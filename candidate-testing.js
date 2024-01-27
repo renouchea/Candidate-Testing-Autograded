@@ -41,10 +41,32 @@ function gradeQuiz(candidateAnswers) {
     //for(let i=0;i<candidateAnswers.length;i++){
     //let result = ` Candidate:${candidateName} Cadidate's Answers: ${candidateAnswers[i]} Correct Answers: ${correctAnswers[i]}`;
     //console.log(result);
-  console.log (`Your respones are ${candidateAnswers} and the correct answers are ${correctAnswers}`);
-  let grade;  //TODO 3.2 use this variable to calculate the candidates score.
-  return grade;
-}
+  //console.log (`Your respones are ${candidateAnswers} and the correct answers are ${correctAnswers}`);
+  let correctCount = 0 
+    for (let i = 0 ; i<candidateAnswers.length ; i++) { 
+      if (candidateAnswers[i].toLowerCase() === correctAnswers[i].toLowerCase()) {
+        correctCount++
+      }
+    }
+      let grade = ((correctCount)/(questions.length))*100;
+        if ( grade === 0 ){
+          console.log (`Sorry ${candidateName}! You got all the wrong answers with score 0%.`)
+        } else if (grade === 100){
+          console.log ( `Congradulation ${candidateName}! You are passed with score 100%.`)
+        } else if ( grade === 80) {
+          console.log (`Congradulation ${candidateName}! You are passed with score 80%.`)
+        } else if ( grade === 60) {
+          console.log (`Sorry, ${candidateName}! You got three correct answers with score 60%.`)
+        } else if ( grade === 40) {
+        console.log (`Sorry, ${candidateName}! You got only two correct answers with score 40%.`)
+        } else if ( grade === 20) {
+        console.log (`Sorry, ${candidateName}! You got only one correct answers with score 20%.`)
+        }
+    //TODO 3.2 use this variable to calculate the candidates score.
+       return grade;
+    }
+console.log(gradeQuiz(candidateAnswers));
+
 function runProgram() {
   askForName();
   // TODO 1.1c: Greet candidate using their name //
